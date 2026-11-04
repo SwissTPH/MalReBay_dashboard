@@ -1,0 +1,1179 @@
+/* ── Navbar ─────────────────────────────────────────────────────────────── */
+.navbar,
+.navbar-default {
+  background-color: #2C3E50 !important;
+  border-color:     #273747 !important;
+  min-height:       auto;
+  padding-top:      0.35rem;
+  padding-bottom:   0.35rem;
+}
+.navbar-default .navbar-brand {
+  color:          white !important;
+  font-weight:    700;
+  font-size:      1.15rem;
+  letter-spacing: 0.01em;
+  display:        flex;
+  align-items:    center;
+  gap:            0.5rem;
+  padding-top:    0;
+  padding-bottom: 0;
+}
+.navbar-logo {
+  height: 42px;
+  width:  auto;
+}
+
+/* Name with a small subtitle stacked underneath */
+.navbar-title-block {
+  display:        flex;
+  flex-direction: column;
+  line-height:    1.15;
+}
+.navbar-subtitle {
+  font-size:      0.68rem;
+  font-weight:    400;
+  letter-spacing: 0.02em;
+  color:          rgba(255, 255, 255, 0.75);
+}
+.navbar-default .navbar-nav > li > a {
+  color:       white !important;
+  font-weight: 600;
+  padding-top:    0.5rem;
+  padding-bottom: 0.5rem;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  color:            white !important;
+}
+
+/* Navbar is always horizontal (.navbar-expand added in ui.R) so it doesn't
+   stack into a vertical list inside narrow iframes. Let tabs wrap rather than
+   overflow, and undo bslib's < 992px full-width .navbar-header, which would
+   otherwise push the tabs onto their own row. */
+.navbar > .container-fluid {
+  flex-wrap: wrap;
+  row-gap:   0.25rem;
+}
+.navbar .navbar-header {
+  width: auto !important;
+}
+.navbar .navbar-nav {
+  flex-wrap: wrap;
+}
+@media (max-width: 767.98px) {
+  .navbar-logo {
+    height: 32px;
+  }
+  .navbar-subtitle {
+    font-size: 0.6rem;
+  }
+  .navbar-default .navbar-brand {
+    font-size:    1rem;
+    margin-right: 0.75rem;
+  }
+  .navbar-default .navbar-nav > li > a {
+    font-size: 0.9rem;
+  }
+  .navbar .nav.nav-underline {
+    --bs-nav-underline-gap: 0.75rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .navbar-subtitle {
+    display: none;
+  }
+}
+
+/* ── Dashboard flex layout ──────────────────────────────────────────────── */
+.dashboard-layout {
+  display:    flex;
+  min-height: calc(100vh - 60px);
+  align-items: stretch;
+}
+
+/* ── Sidebar ────────────────────────────────────────────────────────────── */
+#sidebar-col {
+  width:        290px;
+  flex-shrink:  0;
+  background:   #F4F4F4;
+  border-right: 1px solid #E0E0E0;
+  padding:      0.75rem 0.9rem 1.5rem;
+  transition:   width 0.25s ease;
+  overflow:     hidden;
+}
+#sidebar-col.sidebar-collapsed {
+  width: 42px;
+}
+
+/* Sidebar content min-width prevents reflow during the transition */
+#sidebar-content {
+  min-width: 248px;
+}
+
+/* ── Sidebar toggle button ───────────────────────────────────────────────── */
+.sidebar-toggle-bar {
+  display:        flex;
+  justify-content: flex-end;
+  margin-bottom:  0.4rem;
+}
+.btn-sidebar-toggle {
+  background:  transparent !important;
+  border:      none !important;
+  box-shadow:  none !important;
+  color:       #95A5A6 !important;
+  padding:     0.2rem 0.4rem !important;
+  line-height: 1;
+  transition:  transform 0.25s ease, color 0.15s;
+}
+.btn-sidebar-toggle:hover {
+  color: #2C3E50 !important;
+}
+/* Flip chevron when sidebar is collapsed */
+#sidebar-col.sidebar-collapsed .btn-sidebar-toggle .fa-chevron-left {
+  transform: rotate(180deg);
+}
+
+/* ── "How It Works" page ────────────────────────────────────────────────── */
+/* One container for title, text and cards, so the title lines up with the
+   cards' left edge (the old .lp-title-block had its own narrower width). */
+.hiw-page {
+  max-width: 1180px;
+  margin:    2rem auto 3rem;
+  padding:   0 1.5rem;
+}
+.hiw-intro {
+  font-size:   1rem;
+  line-height: 1.65;
+  color:       #4A4A4A;
+  max-width:   900px;
+  margin-bottom: 1.5rem;
+}
+.hiw-section-title {
+  font-weight: 700;
+  color:       #2C3E50;
+  margin:      2rem 0 0.5rem;
+}
+.hiw-card-body {
+  padding: 1.1rem 1.25rem;
+}
+.hiw-help {
+  font-size:   0.82rem;
+  color:       #7F8C8D;
+  line-height: 1.5;
+}
+.hiw-caption {
+  font-size:  0.82rem;
+  color:      #7F8C8D;
+  margin:     0.4rem 0 0;
+}
+.hiw-controls .shiny-input-container {
+  width: 100% !important;
+}
+
+.hiw-header-hint {
+  font-weight: 400;
+  font-size:   0.8rem;
+  color:       #95A5A6;
+}
+
+/* Click-to-open (i) info button */
+.hiw-info-btn {
+  border:      none;
+  background:  none;
+  padding:     0 0.2rem;
+  color:       #95A5A6;
+  font-size:   0.9rem;
+  line-height: 1;
+  cursor:      pointer;
+}
+.hiw-info-btn:hover,
+.hiw-info-btn:focus-visible { color: #2C3E50; }
+
+/* Control label + its info button */
+.hiw-field { margin-bottom: 0.8rem; }
+.hiw-field-label {
+  display:       flex;
+  align-items:   center;
+  gap:           0.2rem;
+  font-weight:   600;
+  font-size:     0.88rem;
+  color:         #2C3E50;
+  margin-bottom: 0.3rem;
+}
+.hiw-field .shiny-input-container { margin-bottom: 0; }
+
+/* Popovers are attached to <body>, not inside .hiw-page */
+.popover { max-width: 340px; font-size: 0.86rem; }
+
+/* Radio buttons: visible outline on unselected options, and room between
+   inline choices */
+.hiw-page .form-check-input[type="radio"] {
+  border: 1px solid #95A5A6;
+}
+.hiw-page .shiny-options-group .form-check-inline {
+  margin-right: 1.4rem;
+}
+#hiw_data_type > .control-label {
+  font-weight: 700;
+  color:       #2C3E50;
+}
+
+/* Numbered step badge (flow, panel headers, result panel) */
+.hiw-step-badge {
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  width:           1.45rem;
+  height:          1.45rem;
+  border-radius:   50%;
+  background:      #2C3E50;
+  color:           #FFFFFF;
+  font-size:       0.78rem;
+  font-weight:     700;
+  flex-shrink:     0;
+}
+
+/* "The reasoning behind the result": 1 + 2 -> 3 -> 4 */
+.hiw-flow {
+  display:     flex;
+  align-items: stretch;
+  gap:         0.6rem;
+}
+.hiw-flow-step {
+  flex:          1 1 0;
+  display:       flex;
+  flex-direction: column;
+  background:    #F7F9FB;
+  border:        1px solid #E3E8EE;
+  border-radius: 8px;
+  padding:       0.9rem 1rem;
+  cursor:        pointer;
+  transition:    border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.hiw-flow-step:hover,
+.hiw-flow-step:focus-visible {
+  border-color: #2C3E50;
+  box-shadow:   0 2px 6px rgba(44, 62, 80, 0.12);
+  outline:      none;
+}
+.hiw-more {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size:  0.78rem;
+  color:      #7F8C8D;
+}
+.hiw-flow-step-final {
+  background:   #FDF1EE;
+  border-color: #F2C9BF;
+}
+.hiw-flow-head {
+  display:       flex;
+  align-items:   center;
+  gap:           0.5rem;
+  font-weight:   700;
+  color:         #2C3E50;
+  margin-bottom: 0.5rem;
+}
+.hiw-flow-step p {
+  font-size:   0.86rem;
+  line-height: 1.55;
+  color:       #4A4A4A;
+  margin:      0;
+}
+.hiw-flow-join {
+  display:     flex;
+  align-items: center;
+  font-size:   1.3rem;
+  font-weight: 700;
+  color:       #95A5A6;
+}
+/* popover() wraps each step in a <bslib-popover>, which is the flex item */
+.hiw-flow > bslib-popover {
+  flex:    1 1 0;
+  display: flex;
+}
+.hiw-flow > bslib-popover > .hiw-flow-step { flex: 1 1 auto; }
+@media (max-width: 991.98px) {
+  .hiw-flow { flex-direction: column; }
+  .hiw-flow-join { justify-content: center; }
+  .hiw-flow-join .fa-arrow-right { transform: rotate(90deg); }
+}
+
+/* Sliders whose numbers mean little to the reader: hide the numbers, show
+   Low / High underneath instead */
+.hiw-qual-slider .irs-min,
+.hiw-qual-slider .irs-max,
+.hiw-qual-slider .irs-single {
+  display: none;
+}
+.hiw-qual-slider .shiny-input-container {
+  margin-bottom: 0;
+}
+.hiw-qual-ends {
+  display:         flex;
+  justify-content: space-between;
+  font-size:       0.75rem;
+  color:           #7F8C8D;
+  margin:          -0.4rem 0 0.4rem;
+}
+
+/* Right-hand result panel stays in view next to the charts driving it */
+.hiw-result-card {
+  position: sticky;
+  top:      1rem;
+}
+.hiw-subhead {
+  display:       flex;
+  align-items:   center;
+  gap:           0.5rem;
+  font-weight:   700;
+  color:         #2C3E50;
+  margin-bottom: 0.6rem;
+}
+.hiw-evidence-number {
+  font-size:   2.2rem;
+  font-weight: 800;
+  color:       #2C3E50;
+  line-height: 1.1;
+  margin:      0.2rem 0 0.4rem;
+}
+.hiw-evidence-text {
+  font-size:   0.9rem;
+  line-height: 1.55;
+  color:       #4A4A4A;
+}
+.hiw-details summary {
+  font-size: 0.84rem;
+  color:     #2C3E50;
+  cursor:    pointer;
+}
+.hiw-details table {
+  font-size: 0.78rem;
+}
+.hiw-verdict {
+  text-align:  center;
+  font-weight: 600;
+  color:       #2C3E50;
+  margin:      0.6rem 0 0.3rem;
+}
+
+/* Probability gauge */
+.hiw-gauge-track {
+  position:      relative;
+  width:         100%;
+  height:        22px;
+  border-radius: 11px;
+  background:    #ECECEC;
+  overflow:      hidden;
+  border:        1px solid #DADADA;
+}
+.hiw-gauge-fill {
+  height:     100%;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+/* Classification threshold marked on the gauge */
+.hiw-gauge-threshold {
+  position:    absolute;
+  top:         0;
+  bottom:      0;
+  border-left: 2px dashed #2C3E50;
+  transition:  left 0.2s ease;
+}
+.hiw-gauge-label {
+  text-align:  center;
+  font-size:   1.6rem;
+  font-weight: 800;
+  color:       #2C3E50;
+  margin-top:  0.4rem;
+}
+
+/* ── Currently loaded dataset ────────────────────────────────────────────── */
+.current-dataset-box {
+  display:       flex;
+  align-items:   center;
+  gap:           0.5rem;
+  font-size:     0.8rem;
+  font-weight:   600;
+  padding:       0.55rem 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+  background:    #EEF2FA;
+  border:        1px solid #C9D6EF;
+  color:         #2C3E50;
+}
+.current-dataset-box.no-dataset {
+  background: #F4F4F4;
+  border-color: #DADADA;
+  color:      #95A5A6;
+  font-weight: 500;
+}
+.current-dataset-label {
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+/* ── Sidebar section headers ────────────────────────────────────────────── */
+.sidebar-section {
+  font-size:      0.7rem;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color:          #7F8C8D;
+  margin:         0.9rem 0 0.4rem;
+  display:        block;
+}
+
+/* ── Sidebar main sections (LOAD DATA / CLASSIFICATION) ──────────────────
+   Centred uppercase title (navbar colour) between a thin rule above and below. */
+.sidebar-main-section {
+  font-size:      0.75rem;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color:          #2C3E50;
+  text-align:     center;
+  border-top:     1px solid #D5D8DC;
+  border-bottom:  1px solid #D5D8DC;
+  padding:        0.35rem 0;
+  margin:         1.1rem 0 0.6rem;
+}
+
+/* ── Sidebar input labels (Genotyping data, Marker metadata, threshold) ── */
+#sidebar-content .shiny-input-container > .control-label {
+  font-size:     0.88rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ── Sidebar file inputs: compact Browse row ───────────────────────────── */
+/* The upload progress bar is hidden (visibility) until a file uploads but
+   still takes up a full-height row; slim it down so the template links sit
+   close under the Browse row. */
+#sidebar-content .shiny-file-input-progress {
+  height:     4px;
+  margin-top: 2px;
+}
+/* The bar's "Upload complete" text doesn't fit in 4px and spilled over the
+   links below: hide it and let the filled bar (plus the file name in the
+   box and the import notification) show the upload is done. */
+#sidebar-content .shiny-file-input-progress .progress-bar {
+  font-size: 0;
+}
+#sidebar-content .input-group .btn-file,
+#sidebar-content .input-group .form-control {
+  padding:     0.2rem 0.6rem;
+  font-size:   0.82rem;
+  line-height: 1.4;
+  min-height:  0;
+}
+
+/* ── Sidebar subsection headers ─────────────────────────────────────────── */
+.sidebar-subsection {
+  font-size:   0.7rem;
+  font-weight: 600;
+  color:       #95A5A6;
+  margin:      0.6rem 0 0.25rem;
+  display:     block;
+}
+
+/* ── Template / example download links under the file inputs ──────────── */
+.file-helper {
+  margin: -0.85rem 0 0.9rem;
+}
+.file-helper-link {
+  font-size:       0.75rem;
+  color:           #7F8C8D !important;
+  text-decoration: none;
+  cursor:          pointer;
+}
+.file-helper-link:hover {
+  color:           #2C3E50 !important;
+  text-decoration: underline;
+}
+.file-helper-menu {
+  font-size: 0.8rem;
+  width:     100%;
+}
+.file-helper-menu .dropdown-item {
+  color: #2C3E50 !important;
+}
+.file-helper-menu .dropdown-item:hover {
+  background-color: #EEF2FA;
+}
+
+/* ── Collapsible MCMC toggle ────────────────────────────────────────────── */
+.mcmc-toggle {
+  color:         #7F8C8D !important;
+  margin-bottom: 0.4rem;
+}
+.mcmc-toggle:hover {
+  color: #2C3E50 !important;
+}
+.mcmc-chevron {
+  font-size:  0.7rem;
+  transition: transform 0.2s ease;
+}
+.mcmc-toggle[aria-expanded="false"] .mcmc-chevron {
+  transform: rotate(-90deg);
+}
+
+/* ── Info icon tooltips ─────────────────────────────────────────────────── */
+.info-icon {
+  color:     #BDC3C7;
+  font-size: 0.78em;
+  cursor:    help;
+  transition: color 0.15s;
+}
+.info-icon:hover {
+  color: #2C3E50;
+}
+
+/* ── Main content area ──────────────────────────────────────────────────── */
+#main-col {
+  flex:       1;
+  min-width:  0;
+  padding:    1.2rem 1.5rem;
+  background: #FFFFFF;
+}
+
+/* ── Run button ─────────────────────────────────────────────────────────── */
+#run_btn {
+  background-color: #2C3E50 !important;
+  border-color:     #2C3E50 !important;
+  color:            white !important;
+  font-weight:      600;
+  width:            100%;
+  padding:          0.5rem 0;
+  margin-top:       0.6rem;
+}
+#run_btn:hover:not(:disabled) {
+  background-color: #1A252F !important;
+  border-color:     #1A252F !important;
+}
+#run_btn:disabled {
+  opacity: 0.45;
+  cursor:  not-allowed;
+}
+
+/* ── Example dataset buttons ────────────────────────────────────────────── */
+.btn-example {
+  width:         100%;
+  font-size:     0.82rem;
+  margin-bottom: 4px;
+  text-align:    left;
+  background:    transparent !important;
+  border:        1px solid #BDC3C7 !important;
+  color:         #566573 !important;
+}
+.btn-example:hover {
+  background:   #E8E8E8 !important;
+  border-color: #95A5A6 !important;
+  color:        #2C3E50 !important;
+}
+.btn-example.btn-example-selected {
+  font-weight:  700 !important;
+  color:        #000000 !important;
+  border-color: #95A5A6 !important;
+  background:   #E8E8E8 !important;
+}
+
+/* ── Download buttons ───────────────────────────────────────────────────── */
+.btn-dl {
+  background-color: transparent !important;
+  border:           1px solid #2C3E50 !important;
+  color:            #2C3E50 !important;
+  width:            100%;
+  font-size:        0.82rem;
+  margin-bottom:    4px;
+}
+.btn-dl:hover {
+  background-color: #2C3E50 !important;
+  color:            white !important;
+}
+
+/* ── Panel toggle bar ───────────────────────────────────────────────────── */
+.panel-toggle-bar {
+  display:       flex;
+  flex-wrap:     wrap;  /* last resort: whole tabs wrap, never their words */
+  border-bottom: 2px solid #E8E8E8;
+  margin-bottom: 1.4rem;
+}
+.btn-panel-toggle {
+  background:   none !important;
+  border:       none !important;
+  border-bottom: 3px solid transparent !important;
+  margin-bottom: -2px;
+  padding:      0.55rem 1.4rem !important;
+  font-weight:  600 !important;
+  color:        #95A5A6 !important;
+  border-radius: 0 !important;
+  box-shadow:   none !important;
+  cursor:       pointer;
+  white-space:  nowrap;
+  transition:   color 0.15s, border-color 0.15s;
+}
+.btn-panel-toggle:hover {
+  color: #2C3E50 !important;
+}
+.btn-panel-toggle.active-panel {
+  color:               #2C3E50 !important;
+  border-bottom-color: #2C3E50 !important;
+}
+/* Narrower screens / embedded mirror frame: tighter tabs so all three fit
+   on one row next to the sidebar */
+@media (max-width: 1199.98px) {
+  .btn-panel-toggle {
+    padding:   0.5rem 0.75rem !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* ── Welcome / empty-state placeholder ─────────────────────────────────── */
+.welcome-box {
+  background:    #F0F0F0;
+  border-radius: 6px;
+  padding:       2.5rem 2rem;
+  text-align:    center;
+  color:         #95A5A6;
+}
+.welcome-box h3 {
+  color:       #7F8C8D;
+  font-weight: 600;
+}
+.welcome-box p {
+  font-size: 1.05rem;
+  margin:    0;
+}
+
+/* ── Empty-state placeholder inside an otherwise-blank chart/table card ─── */
+.panel-empty-msg {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             0.5rem;
+  min-height:      200px;
+  padding:         1rem;
+  color:           #95A5A6;
+  font-size:       0.95rem;
+  text-align:      center;
+}
+
+/* ── Stat cards ─────────────────────────────────────────────────────────── */
+.stat-box {
+  background:    #FAFAFA;
+  border:        1px solid #E8E8E8;
+  border-radius: 5px;
+  padding:       0.8rem 1rem;
+  text-align:    center;
+}
+.stat-num {
+  font-size:   2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color:       #2C3E50;
+}
+.stat-num.teal  { color: #2C3E50; }
+.badge-primary {
+  background-color: #2C3E50 !important;
+  color:             #FFFFFF !important;
+}
+.stat-num.red   { color: #E74C3C; }
+.stat-num.green { color: #27AE60; }
+.stat-label {
+  font-size:      0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color:          #95A5A6;
+  margin-top:     2px;
+}
+
+/* ── Section cards ──────────────────────────────────────────────────────── */
+.content-card {
+  border:        1px solid #E8E8E8;
+  border-radius: 5px;
+  margin-bottom: 1.2rem;
+  overflow:      hidden;
+}
+.content-card-header {
+  background:    #F9F9F9;
+  border-bottom: 1px solid #E8E8E8;
+  padding:       0.55rem 1rem;
+  font-weight:   600;
+  font-size:     0.9rem;
+  color:         #2C3E50;
+}
+
+/* ── Inner tabs ─────────────────────────────────────────────────────────── */
+.inner-tabs .nav-tabs {
+  border-bottom: 1px solid #E8E8E8;
+  margin-bottom: 1rem;
+}
+.inner-tabs .nav-tabs > li > a {
+  color:       #7F8C8D;
+  border:      none;
+  padding:     0.4rem 1rem;
+  font-size:   0.88rem;
+  font-weight: 600;
+}
+.inner-tabs .nav-tabs > li.active > a {
+  color:         #2C3E50;
+  border-bottom: 2px solid #2C3E50;
+  background:    transparent;
+}
+
+/* ── Alert / status strip ───────────────────────────────────────────────── */
+.status-strip {
+  font-size:     0.83rem;
+  padding:       0.45rem 0.75rem;
+  border-radius: 4px;
+  margin-top:    0.75rem;
+}
+
+/* ── Floating chat button ───────────────────────────────────────────────── */
+.chat-fab {
+  position:      fixed;
+  bottom:        1.8rem;
+  right:         1.8rem;
+  width:         52px;
+  height:        52px;
+  border-radius: 50%;
+  background:    #2C3E50;
+  border:        none;
+  color:         white;
+  font-size:     1.25rem;
+  box-shadow:    0 4px 14px rgba(0, 0, 0, 0.22);
+  z-index:       1050;
+  cursor:        pointer;
+  transition:    background 0.15s, transform 0.15s;
+}
+.chat-fab:hover {
+  background: #273747;
+  transform:  scale(1.07);
+}
+
+/* ── Chat panel ─────────────────────────────────────────────────────────── */
+.chat-panel {
+  position:       fixed;
+  bottom:         5.2rem;
+  right:          1.8rem;
+  width:          380px;
+  height:         500px;
+  background:     white;
+  border:         1px solid #D5D8DC;
+  border-radius:  12px;
+  box-shadow:     0 8px 28px rgba(0, 0, 0, 0.16);
+  z-index:        1049;
+  flex-direction: column;
+  overflow:       hidden;
+}
+
+.chat-panel-header {
+  background:      #2C3E50;
+  color:           white;
+  padding:         0.65rem 1rem;
+  font-weight:     600;
+  font-size:       0.92rem;
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  flex-shrink:     0;
+}
+.chat-close-btn {
+  background:  transparent;
+  border:      none;
+  color:       white;
+  font-size:   1.3rem;
+  line-height: 1;
+  cursor:      pointer;
+  padding:     0 0.2rem;
+  opacity:     0.85;
+}
+.chat-close-btn:hover { opacity: 1; }
+
+.chat-panel-body {
+  flex:     1;
+  overflow: hidden;
+  display:  flex;
+  flex-direction: column;
+}
+
+/* ── Landing page ───────────────────────────────────────────────────────── */
+
+.lp-title-block {
+  max-width: 1060px;
+  margin:    2rem auto 0;
+  padding:   0 1.5rem;
+}
+.lp-title {
+  font-size:   2.4rem;
+  font-weight: 800;
+  color:       #2C3E50;
+  margin:      0 0 0.3rem;
+}
+.lp-title-sub {
+  font-size: 1.05rem;
+  color:     #4A4A4A;
+  margin:    0;
+}
+
+.lp-body {
+  max-width: 1060px;
+  margin:    2.2rem auto;
+  padding:   0 1.5rem 3rem;
+}
+
+.lp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  margin-bottom: 1.4rem;
+}
+@media (max-width: 720px) {
+  .lp-row { grid-template-columns: 1fr; }
+}
+
+.lp-card {
+  background:    #FFFFFF;
+  border:        1px solid #E8E8E8;
+  border-radius: 8px;
+  padding:       1.6rem 1.8rem;
+  box-shadow:    0 2px 8px rgba(0,0,0,0.05);
+}
+.lp-card-wide {
+  margin-bottom: 1.4rem;
+}
+.lp-card h4 {
+  font-weight: 700;
+  color:       #2C3E50;
+  margin:      0.4rem 0 0.9rem;
+}
+.lp-card p, .lp-card li {
+  font-size: 0.93rem;
+  color:     #4A4A4A;
+  line-height: 1.6;
+}
+.lp-card ul {
+  padding-left: 1.2rem;
+}
+
+.lp-card-title {
+  display:     flex;
+  align-items: center;
+  gap:         0.5rem;
+  font-weight: 700;
+  color:       #2C3E50;
+  margin:      0 0 0.9rem;
+}
+.lp-icon-blue  { color: #2E86C1; }
+.lp-icon-teal  { color: #2C3E50; }
+.lp-icon-dark  { color: #2C3E50; }
+.lp-card-logo  { height: 1.5rem; width: auto; }
+
+/* Feature grid inside MalReBay card */
+.lp-feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  margin: 1rem 0 1.4rem;
+}
+@media (max-width: 600px) {
+  .lp-feature-grid { grid-template-columns: 1fr; }
+}
+.lp-feature {
+  display:    flex;
+  gap:        0.5rem;
+  align-items: flex-start;
+}
+/* Bullet in front of each feature header, with the description hanging
+   under the header text */
+.lp-feature::before {
+  content:     "\2022";
+  color:       #2C3E50;
+  font-size:   1.1rem;
+  line-height: 1.25;
+  flex-shrink: 0;
+}
+.lp-feat-icon {
+  color:     #2C3E50;
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+.lp-feature strong { font-size: 0.9rem; color: #2C3E50; }
+.lp-feature p { margin: 0.2rem 0 0; font-size: 0.85rem; }
+
+.lp-cta {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.lp-cta-btn {
+  background-color: #2C3E50 !important;
+  border-color:     #2C3E50 !important;
+  color:            white !important;
+  font-weight:      600;
+  padding:          0.55rem 2rem;
+  font-size:        1rem;
+}
+.lp-cta-btn:hover {
+  background-color: #1A252F !important;
+  border-color:     #1A252F !important;
+}
+
+/* Authors card */
+.lp-authors-card { background: #F9FAFB; }
+.lp-authors {
+  display: flex;
+  gap:     2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.lp-author {
+  display:    flex;
+  gap:        0.65rem;
+  align-items: flex-start;
+}
+.lp-author-icon {
+  font-size: 1.6rem;
+  color:     #95A5A6;
+  margin-top: 0.1rem;
+}
+.lp-author strong { font-size: 0.92rem; color: #2C3E50; }
+.lp-author p { margin: 0.15rem 0 0; font-size: 0.84rem; color: #7F8C8D; }
+.lp-github { font-size: 0.85rem; color: #7F8C8D; }
+.lp-github a { color: #2C3E50; font-weight: 600; }
+.lp-funding { font-size: 0.85rem; color: #7F8C8D; margin-bottom: 0.25rem; }
+
+/* ── Chart descriptions + site drop-down ─────────────────────────────────── */
+.panel-intro {
+  font-size:     0.92rem;
+  color:         #566573;
+  margin-bottom: 1rem;
+}
+/* Description first, then the site (and other) controls below it */
+.card-intro-row {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.5rem;
+  margin-bottom:  0.75rem;
+}
+.card-controls {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.5rem 2rem;
+  align-items: flex-start;
+}
+.card-controls:empty { display: none; }
+.card-controls .form-group { margin-bottom: 0; }
+.card-intro {
+  flex:      none;
+  font-size: 0.85rem;
+  color:     #566573;
+}
+.card-intro p { margin-bottom: 0.4rem; }
+.card-site-select { flex: 0 0 auto; }
+.card-site-select .form-group { margin-bottom: 0; }
+/* "Choose site" label to the left of its drop-down */
+.card-site-select .shiny-input-container {
+  width:       auto !important;  /* the 220px set in R goes to the drop-down */
+  display:     flex;
+  align-items: center;
+  gap:         0.6rem;
+}
+.card-site-select .shiny-input-container > label {
+  margin-bottom: 0;
+  white-space:   nowrap;
+}
+.card-site-select .shiny-input-container > div { flex: 0 0 220px; }
+
+/* ── Results-tab "running" spinner ──────────────────────────────────────── */
+.tab-spinner {
+  display:     none;
+  margin-left: 6px;
+  color:       #2C3E50;
+}
+
+/* ── Busy spinners in Analysis panels ──────────────────────────────────────
+   Shiny's busy indicator (useBusyIndicators() in ui.R) centres a spinner
+   over recalculating plots/tables, but deliberately hides it on uiOutput()s.
+   Every Analysis panel's content is a uiOutput wrapper, so re-enable it
+   there: panels then show a spinner while they're being built, not a blank
+   card. */
+#main-col .content-card .shiny-html-output.recalculating::after {
+  display: block;
+}
+#main-col .content-card .shiny-html-output.recalculating:empty {
+  min-height: 120px;
+}
+
+/* ── About page ─────────────────────────────────────────────────────────── */
+.about-page {
+  max-width: 820px;
+  margin:    2rem auto 3rem;
+  padding:   0 1.5rem;
+}
+.about-lead {
+  font-size:   1.1rem;
+  line-height: 1.65;
+  color:       #4A4A4A;
+}
+.about-section {
+  margin-top: 1.8rem;
+}
+.about-section h4 {
+  font-weight: 700;
+  color:       #2C3E50;
+  margin-bottom: 0.6rem;
+}
+.about-section p {
+  line-height: 1.65;
+  color:       #4A4A4A;
+}
+.about-people {
+  display:   flex;
+  flex-wrap: wrap;
+  gap:       0.75rem;
+  margin:    1rem 0;
+}
+.about-person {
+  flex:          1 1 260px;
+  display:       flex;
+  flex-direction: column;
+  gap:           0.15rem;
+  padding:       0.7rem 0.9rem;
+  background:    #F7F9FB;
+  border:        1px solid #E3E8EE;
+  border-radius: 6px;
+  font-size:     0.88rem;
+  color:         #566573;
+}
+.about-person strong { color: #2C3E50; }
+.about-logos {
+  display:     flex;
+  flex-wrap:   wrap;
+  align-items: center;
+  gap:         2.5rem;
+  margin-top:  1.5rem;
+}
+.about-logo img {
+  height:    56px;
+  max-width: 240px;
+  object-fit: contain;
+}
+.about-links {
+  list-style: none;
+  padding:    0;
+}
+.about-links li {
+  display:       flex;
+  align-items:   flex-start;
+  gap:           0.75rem;
+  margin-bottom: 0.8rem;
+}
+.about-links a {
+  font-weight: 600;
+  color:       #2C3E50;
+}
+.about-links span {
+  display:   block;
+  font-size: 0.88rem;
+  color:     #566573;
+}
+.about-link-icon {
+  width:      1.2rem;
+  margin-top: 0.25rem;
+  color:      #7F8C8D;
+  text-align: center;
+}
+.content-card-header .hiw-info-btn {
+  margin-left: 0.3rem;
+}
+.lp-authors-card .about-logos {
+  margin: 1rem 0 0.5rem;
+}
+.lp-authors-card .about-logo img {
+  height: 48px;
+}
+
+/* Collapsible Explore Data cards (<details>): the header toggles the body */
+details.collapsible-card > summary {
+  display:     flex;
+  align-items: center;
+  gap:         0.35rem;
+  cursor:      pointer;
+  list-style:  none;
+  user-select: none;
+}
+details.collapsible-card > summary::-webkit-details-marker { display: none; }
+details.collapsible-card > summary:hover { background: #F0F2F4; }
+details.collapsible-card .collapse-chevron {
+  margin-left: auto;
+  color:       #95A5A6;
+  transition:  transform 0.15s ease;
+}
+details.collapsible-card:not([open]) .collapse-chevron { transform: rotate(-90deg); }
+details.collapsible-card:not([open]) > summary { border-bottom: none; }
+
+/* Table headers with hover info */
+table.dataTable thead th[title] {
+  text-decoration:       underline dotted #95A5A6;
+  text-underline-offset: 3px;
+  cursor:                help;
+}
+.table-legend {
+  font-size:     0.85rem;
+  color:         #566573;
+  margin-bottom: 0.5rem;
+}
+.legend-swatch {
+  display:        inline-block;
+  width:          0.9em;
+  height:         0.9em;
+  border:         1px solid #CCC;
+  border-radius:  2px;
+  vertical-align: -0.1em;
+  margin-left:    0.3em;
+}
+.table-legend-below {
+  margin-top:    0.4rem;
+  margin-bottom: 0;
+}
+
+/* No sort arrows/diamonds in table headers: clicking a header still sorts */
+table.dataTable thead > tr > th.sorting::before,
+table.dataTable thead > tr > th.sorting::after,
+table.dataTable thead > tr > th.sorting_asc::before,
+table.dataTable thead > tr > th.sorting_asc::after,
+table.dataTable thead > tr > th.sorting_desc::before,
+table.dataTable thead > tr > th.sorting_desc::after,
+table.dataTable thead > tr > th.sorting_asc_disabled::before,
+table.dataTable thead > tr > th.sorting_asc_disabled::after,
+table.dataTable thead > tr > th.sorting_desc_disabled::before,
+table.dataTable thead > tr > th.sorting_desc_disabled::after,
+table.dataTable thead .dt-column-order {
+  display: none !important;
+}
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc {
+  padding-right: 0.5rem !important;
+}
+
+/* Run time line at the top of the Classification Results page */
+.run-info {
+  font-size: 0.9rem;
+  color:     #566573;
+}
+.run-info .fa-clock { color: #2C3E50; }
+
+/* Dashboard size limit, under the Run button */
+#sidebar-content .run-limit-note {   /* same look as the "MCMC Settings" toggle */
+  font-size:   0.7rem;
+  font-weight: 600;
+  color:       #7F8C8D;
+  line-height: 1.4;
+  margin:      0.45rem 0 0;
+}
+
+/* About: what the dashboard can do */
+.about-capabilities li { margin-bottom: 0.35rem; }

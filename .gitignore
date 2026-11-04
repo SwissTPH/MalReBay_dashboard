@@ -1,0 +1,21 @@
+# R session files
+.RData
+.Ruserdata
+.Renviron
+.Rproj.user
+Rplots.pdf
+MalReBay_dashboard.Rproj
+.Rhistory
+*:Zone.Identifier
+
+# Quarto / R Markdown rendering of the notebooks
+.quarto/
+notebooks/*.html
+notebooks/*_files/
+
+# Default MalReBay output folder when run from a notebook or script
+malrebay_results/
+
+# OS clutter
+.DS_Store
+Thumbs.db

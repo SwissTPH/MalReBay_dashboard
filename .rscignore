@@ -1,0 +1,10 @@
+.claude/
+.git/
+.gitignore
+.Renviron
+Rplots.pdf
+notebooks/
+*:Zone.Identifier
+
+# Local test data, not part of the app
+test_data/

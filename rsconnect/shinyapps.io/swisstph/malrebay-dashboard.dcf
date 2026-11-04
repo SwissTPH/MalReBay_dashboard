@@ -1,0 +1,10 @@
+name: malrebay-dashboard
+title:
+username: swisstph
+account: swisstph
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17875995
+bundleId: 12629650
+url: https://swisstph.shinyapps.io/malrebay-dashboard/
+version: 1
