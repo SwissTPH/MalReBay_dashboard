@@ -234,6 +234,8 @@ ui <- navbarPage(
       tags$link(rel = "stylesheet",
                 href = paste0("custom.css?v=", as.integer(file.mtime(file.path("www", "custom.css"))))),
       tags$script(src = "collapse.js"),
+      # Reports the content height to the parent page when embedded in an iframe
+      tags$script(src = "iframe-height.js"),
       tags$script(HTML("
         $(document).ready(function() {
           $(document).on('click', '#load_example_lp_short, #load_example_lp, #load_example_ampseq', function() {
@@ -879,6 +881,8 @@ ui <- navbarPage(
                   tags$span(id = "spinner_patient_results", class = "tab-spinner",
                     icon("circle-notch", class = "fa-spin"))),
                 br(),
+                div(class = "card-site-select mb-3",
+                  selectInput("posterior_site", "Choose site:", choices = ALL_SITES, width = "220px")),
                 div(class = "card-intro mb-2",
                   p("Each row represents one patient and shows the MalReBay
                      posterior probability of recrudescence, the resulting
@@ -893,28 +897,32 @@ ui <- navbarPage(
                   tags$span(id = "spinner_comparison", class = "tab-spinner",
                     icon("circle-notch", class = "fa-spin"))),
                 br(),
-                div(class = "card-intro mb-2",
-                  p("Each row represents one patient and compares the MalReBay
-                     result with the match-counting approach. It shows the match
-                     result for each marker, the overall match-counting result
-                     (e.g. whether 2 out of 3 or all 3 markers match), and the
-                     corresponding MalReBay result."),
-                  # One HTML string: separate tags$strong() children would
-                  # leave a visible space before each colon
-                  p(HTML("<strong>R</strong>: recrudescence (alleles match) &middot;
-                     <strong>NI</strong>: new infection (no match) &middot;
-                     <strong>IND</strong>: indeterminate (marker not typed in both
-                     samples; for a rule, too few markers typed) &middot;
-                     <strong>ERR</strong>: no unique Day 0 / recurrence pair."))
-                ),
-                uiOutput("comparison_table_ui"),
+                # One site choice for both the table and the heatmap below, so
+                # they always show the same patients
+                div(class = "card-site-select mb-3",
+                  selectInput("comparison_site", "Choose site:", choices = ALL_SITES, width = "220px")),
+                plot_card("table-list", "Match-Counting vs MalReBay Results Table",
+                  tagList(
+                    p("Each row represents one patient and compares the MalReBay
+                       result with the match-counting approach. It shows the match
+                       result for each marker, the overall match-counting result
+                       (e.g. whether 2 out of 3 or all 3 markers match), and the
+                       corresponding MalReBay result."),
+                    # One HTML string: separate tags$strong() children would
+                    # leave a visible space before each colon
+                    p(HTML("<strong>R</strong>: recrudescence (alleles match) &middot;
+                       <strong>NI</strong>: new infection (no match) &middot;
+                       <strong>IND</strong>: indeterminate (marker not typed in both
+                       samples; for a rule, too few markers typed) &middot;
+                       <strong>ERR</strong>: no unique Day 0 / recurrence pair."))),
+                  NULL, "comparison_table_ui", collapsible = TRUE),
                 br(),
                 plot_card("table-cells", "Match-Counting vs MalReBay Heatmap",
                   p("One row per patient. The two match-counting rules are shown
                      as recrudescence (red) or new infection (pale blue); MalReBay
                      shows the posterior probability on the same colour scale.
                      Grey: too few markers scored to apply the rule."),
-                  "heatmap_site", "heatmap_plot_ui", collapsible = TRUE)
+                  NULL, "heatmap_plot_ui", collapsible = TRUE)
               ),
 
               tabPanel(

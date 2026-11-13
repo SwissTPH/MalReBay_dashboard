@@ -91,6 +91,12 @@
   min-height: calc(100vh - 60px);
   align-items: stretch;
 }
+/* Embedded in an iframe that the parent sizes to our reported height
+   (www/iframe-height.js): a viewport-based min-height would grow with the
+   iframe and the page could never shrink again (e.g. after switching tabs) */
+html.in-iframe .dashboard-layout {
+  min-height: 0;
+}
 
 /* ── Sidebar ────────────────────────────────────────────────────────────── */
 #sidebar-col {
@@ -156,6 +162,19 @@
 }
 .hiw-card-body {
   padding: 1.1rem 1.25rem;
+  /* Lets the rules below react to the card's own width rather than the
+     window's. Bootstrap's col-md-* only looks at the window, so in a medium
+     window (or an iframe of that width) a card in the 8/12 column still split
+     its controls and chart side by side and squashed both. */
+  container-type: inline-size;
+}
+/* Too narrow for controls next to the chart: stack them, controls on top */
+@container (max-width: 620px) {
+  .hiw-card-body > .row > [class*="col-"] {
+    flex:  0 0 auto;
+    width: 100%;
+  }
+  .hiw-card-body > .row > .hiw-controls { margin-bottom: 0.75rem; }
 }
 .hiw-help {
   font-size:   0.82rem;
@@ -294,7 +313,8 @@
   display: flex;
 }
 .hiw-flow > bslib-popover > .hiw-flow-step { flex: 1 1 auto; }
-@media (max-width: 991.98px) {
+/* Four steps side by side need room: stack them when the card is narrow */
+@container (max-width: 860px) {
   .hiw-flow { flex-direction: column; }
   .hiw-flow-join { justify-content: center; }
   .hiw-flow-join .fa-arrow-right { transform: rotate(90deg); }
@@ -1114,11 +1134,9 @@ details.collapsible-card .collapse-chevron {
 details.collapsible-card:not([open]) .collapse-chevron { transform: rotate(-90deg); }
 details.collapsible-card:not([open]) > summary { border-bottom: none; }
 
-/* Table headers with hover info */
+/* Table headers with hover info: the help cursor (no underline) signals it */
 table.dataTable thead th[title] {
-  text-decoration:       underline dotted #95A5A6;
-  text-underline-offset: 3px;
-  cursor:                help;
+  cursor: help;
 }
 .table-legend {
   font-size:     0.85rem;

@@ -1144,7 +1144,9 @@ server <- function(input, output, session) {
     sites <- sort(unique(as.character(rv$results$posterior_probabilities$Site)))
     updateSelectInput(session, "prob_hist_site",
                       choices = c(ALL_SITES, EACH_SITE, sites), selected = ALL_SITES)
-    updateSelectInput(session, "heatmap_site",
+    updateSelectInput(session, "posterior_site",
+                      choices = c(ALL_SITES, sites), selected = ALL_SITES)
+    updateSelectInput(session, "comparison_site",
                       choices = c(ALL_SITES, sites), selected = ALL_SITES)
     conv_sites <- names(rv$results$mcmc_loglikelihoods)
     updateSelectInput(session, "convergence_site",
@@ -1272,6 +1274,8 @@ server <- function(input, output, session) {
 
   output$posterior_table <- renderDT({
     pp <- posterior_results()
+    site <- input$posterior_site
+    if (!is.null(site) && site != ALL_SITES) pp <- pp[pp$Site == site, , drop = FALSE]
     pp$Probability <- round(pp$Probability, 4)
 
     datatable(
@@ -1366,6 +1370,8 @@ server <- function(input, output, session) {
 
   output$comparison_table <- renderDT({
     df        <- match_counting_summary()
+    site      <- input$comparison_site
+    if (!is.null(site) && site != ALL_SITES) df <- df[df$Site == site, , drop = FALSE]
     call_cols <- setdiff(colnames(df), c("Site", "Sample.ID", "MalReBay_probability",
                                          "MalReBay_classification", "MalReBay_threshold"))
     prob_idx  <- which(colnames(df) == "MalReBay_probability") - 1  # DT columns are 0-based
@@ -1432,14 +1438,14 @@ server <- function(input, output, session) {
     }
     # Tiles shrink with patient count; grow the plot so rows stay readable
     comp    <- rv$results$comparison
-    site    <- input$heatmap_site
+    site    <- input$comparison_site
     n_rows  <- if (!is.null(site) && site %in% comp$Site) sum(comp$Site == site) else nrow(comp)
     plotOutput("heatmap_plot", height = paste0(max(450, n_rows * 10 + 150), "px"))
   })
 
   output$heatmap_plot <- renderPlot({
     plots <- heatmap_plots()
-    p <- select_site_plot(plots, input$heatmap_site)
+    p <- select_site_plot(plots, input$comparison_site)
     validate(need(!is.null(p), "No comparison data available."))
     p
   })
